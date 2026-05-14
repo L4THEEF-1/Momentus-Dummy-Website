@@ -1,0 +1,165 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "localhost";
+
+// Establish database connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check for connection error
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Sanitize inputs
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
+
+    // Prepare SQL statement to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Verify the password
+        if (password_verify($password, $row['password'])) {
+            echo "<script>alert('Login successful! Welcome back.');</script>";
+            echo "<script>window.location.href = 'index.html';</script>";
+        } else {
+            echo "<script>alert('Invalid password. Please try again.');</script>";
+        }
+    } else {
+        echo "<script>alert('No user found with this email. Please sign up.');</script>";
+    }
+
+    // Close the statement
+    $stmt->close();
+}
+
+// Close the connection
+$conn->close();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+.form-container {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 50px auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+}
+
+.form-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #333;
+    background-color: #f7f7f7;
+}
+
+form button {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+    .logo-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo-container img {
+      width: 100px;
+    }
+
+    .logo-container .hover-text {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 100%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    .logo-container:hover .hover-text {
+      display: block;
+      font-family: 'Poppins';
+    }
+    </style>
+</head>
+<body>
+
+
+<nav>
+        <div class="logo">
+            <div class="logo-container">
+                <a href="login.php"><img src="media\momentusLogo.png" alt="Momentus Logo"></a>
+                <div class="hover-text">Login Here..</div>
+            </div>
+        </div>
+    <div class="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="index1.html">Booking</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+</nav>
+
+    <div class="form-container">
+        <h1 style="font-family: 'Poppins';">Login</h1>
+        <form method="post">
+            <label for="email" style="font-family: 'Poppins';">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required style="font-family: 'Poppins';">
+            
+            <label for="password" style="font-family: 'Poppins';">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required style="font-family: 'Poppins';">
+            
+            <button type="submit" value="Submit" style="background-color: #6E1717; font-family: 'Poppins';">Login</button>
+        </form>
+        <p>Don't have an account? <a href="signup.php">Sign Up Here</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="style.css?v=<?php echo time(); ?>">
+</head>
+<body>
+
+
+    <nav>
+    <div class="logo">
+        <img style="width: 100px;" src="media\momentusLogo.png">
+    </div>
+    <div class="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="index1.html">Booking</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+</nav>
+
+<br><br>
+
+    <h1 class="bookingTitle">Contact Form</h1>
+    <br>
+
+    <form class="contactForm" method="post">
+        <label for="name" style="font-family: 'Poppins'; text-align: center;">Name:</label>
+        <input type="text" name="name" id="name"  placeholder="Enter your name." required><br><br>
+
+        <label for="name" style="font-family: 'Poppins'; text-align: center;">Phone Number:</label>
+        <input type="text" name="number" id="number"  placeholder="+0 000-000-0000" required><br><br>
+
+<label for="message" style="font-family: 'Poppins'; text-align: center;">Message: </label>
+<textarea 
+    name="message" 
+    id="message" 
+    placeholder="Leave a message!" 
+    style="width: 450px; height: 150px; font-size: 16px; padding: 10px;" 
+    required>
+</textarea>
+<br><br>
+
+
+
+
+        <input type="submit" value="Submit" style="background-color: #6E1717; font-family: 'Poppins';">
+    </form>
+
+</body>
+</html>

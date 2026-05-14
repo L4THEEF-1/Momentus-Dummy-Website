@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Booking</title>
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+</head>
+<body>
+
+
+    <nav>
+    <div class="logo">
+        <img style="width: 100px;" src="media\momentusLogo.png">
+    </div>
+    <div class="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="index1.html">Booking</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+</nav>
+
+
+
+<br><br>
+
+    <h1 class="bookingTitle">Book Now</h1>
+    <br>
+    <form class="bookingForm" method="post">
+        <label for="name" style="font-family: 'Poppins';">Name:</label>
+        <input type="text" name="name" id="name"  placeholder="Enter your name." required><br><br>
+
+        <label for="email" style="font-family: 'Poppins';">Email:</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email address." required><br><br>
+
+        <label for="location" style="font-family: 'Poppins';">Location: </label>
+        <input type="text" name="location" id="location" placeholder="Where are you planning to take your photos?" required><br><br>
+
+        <label for="date" style="font-family: 'Poppins';">Date: </label>
+        <input type="date" name="date" id="date" required><br><br>
+
+        <label for="time" style="font-family: 'Poppins';">Time: </label>
+        <input type="time" name="time" id="time" required><br><br>
+
+        <label for="message" style="font-family: 'Poppins';">Message: </label>
+        <input type="text" name="message" id="message" placeholder="Leave a message!" required><br><br>
+
+
+
+        <input type="submit" value="Submit" style="background-color: #6E1717; font-family: 'Poppins';">
+    </form>
+
+</body>
+</html>
