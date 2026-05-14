@@ -286,3 +286,30 @@ nav a:hover {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+    .logo-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo-container img {
+      width: 100px;
+    }
+
+    .logo-container .hover-text {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 100%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    .logo-container:hover .hover-text {
+      display: block;
+      font-family: 'Poppins';
+    }
